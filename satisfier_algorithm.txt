@@ -1,24 +1,24 @@
-The algorithm works on boolean circuits in CNF form to satisfy them.
+The algorithm works on boolean circuits in 3-CNF form to satisfy them.
 
 It works by process of elimination and constraint propagation, where each step introduces a new clause.
 Instead of generating full truth tables, it maintains a set of constraints on variables (must be true, must be false, or unknown).
 
 Time Complexity Analysis:
-1. For each clause (a ∨ b):
-   - Check if already satisfied by current constraints: O(1) since only 2 literals
-   - If not satisfied, try each way to satisfy it: O(1) since only 2 literals
+1. For each clause (a ∨ b ∨ c):
+   - Check if already satisfied by current constraints: O(1) since only 3 literals
+   - If not satisfied, try each way to satisfy it: O(1) since only 3 literals
    - Create new constraint sets: O(n) to copy variable states
    Total per clause: O(n)
 
 2. For m clauses:
-   - Each clause can create up to 2 new constraint sets per existing set
-   - After k clauses, we could have up to 2ᵏ constraint sets
+   - Each clause can create up to 3 new constraint sets per existing set
+   - After k clauses, we could have up to 3ᵏ constraint sets
    - Each constraint set operation is O(n)
-   Total after m clauses: O(n * 2ᵐ) in worst case
+   Total after m clauses: O(n * 3ᵐ) in worst case
 
 The algorithm is not polynomial time because:
 1. The number of constraint sets can grow exponentially
-2. Each new clause can double the number of constraint sets
+2. Each new clause can triple the number of constraint sets
 3. We need to process all constraint sets for each clause
 
 However, it is often faster than naive truth table generation because:

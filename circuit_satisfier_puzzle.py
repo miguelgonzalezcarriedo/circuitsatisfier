@@ -39,8 +39,8 @@ def generate_circuit(num_inputs: int, num_clauses: int) -> Gate:
     # Create clauses
     clauses = []
     for _ in range(num_clauses):
-        # Each clause has 2 literals (variables or their negations)
-        literals = random.sample(available_inputs, 2)
+        # Each clause has 3 literals (variables or their negations)
+        literals = random.sample(available_inputs, 3)
         # Randomly negate some literals
         negated_literals = [
             Gate('NOT', [lit]) if random.random() < 0.5 else lit 
